@@ -5,12 +5,7 @@ export default function Header() {
         {/* Logo and Title Section */}
         <div className="flex flex-col items-center mb-4">
           {/* Logo Placeholder - Diamond Shape */}
-          <div className="w-16 h-16 mb-3 relative">
-            <svg viewBox="0 0 64 64" className="w-full h-full fill-white opacity-90">
-              <path d="M32 2 L52 22 L52 42 L32 62 L12 42 L12 22 Z" />
-              <path d="M32 10 L44 22 L44 42 L32 54 L20 42 L20 22 Z" fill="#D4C4B0" />
-            </svg>
-          </div>
+          <img src="/logo.png" alt="Kaifei Landscape Logo" />
           
           {/* Company Name */}
           <h1 className="text-3xl md:text-4xl font-bold text-[#2d2d2d] mb-1">
