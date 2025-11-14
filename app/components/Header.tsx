@@ -8,7 +8,7 @@ export default function Header() {
         {/* Main Header Bar */}
         <div className="flex items-center justify-between py-4">
           {/* Logo and Company Name */}
-          <div className="flex items-center gap-4">
+          <Link href={'/'} className="flex items-center gap-4">
             <img
               src="/logo.png"
               alt="Kaifei Landscape Logo"
@@ -22,7 +22,7 @@ export default function Header() {
                 Customized design within budget
               </p>
             </div>
-          </div>
+          </Link>
 
           {/* Desktop Navigation */}
           <nav className="hidden lg:flex items-center gap-8">
