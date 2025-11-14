@@ -1,3 +1,6 @@
+import Link from 'next/link';
+import { menus } from '../data/menuData';
+
 export default function Header() {
   return (
     <header className="bg-white shadow-sm sticky top-0 z-50 transition-all">
@@ -23,36 +26,25 @@ export default function Header() {
 
           {/* Desktop Navigation */}
           <nav className="hidden lg:flex items-center gap-8">
-            <a
-              href="#about"
-              className="text-sm font-normal text-[#3d3d3d] hover:text-[#2d4a3e] transition-colors relative after:absolute after:bottom-[-4px] after:left-0 after:h-[2px] after:w-0 after:bg-[#2d4a3e] after:transition-all hover:after:w-full"
-            >
-              About
-            </a>
-            <a
-              href="#gallery"
-              className="text-sm font-normal text-[#3d3d3d] hover:text-[#2d4a3e] transition-colors relative after:absolute after:bottom-[-4px] after:left-0 after:h-[2px] after:w-0 after:bg-[#2d4a3e] after:transition-all hover:after:w-full"
-            >
-              Gallery
-            </a>
-            <a
-              href="#project-location"
-              className="text-sm font-normal text-[#3d3d3d] hover:text-[#2d4a3e] transition-colors relative after:absolute after:bottom-[-4px] after:left-0 after:h-[2px] after:w-0 after:bg-[#2d4a3e] after:transition-all hover:after:w-full"
-            >
-              Projects
-            </a>
-            <a
-              href="#contact-us"
-              className="text-sm font-normal text-[#3d3d3d] hover:text-[#2d4a3e] transition-colors relative after:absolute after:bottom-[-4px] after:left-0 after:h-[2px] after:w-0 after:bg-[#2d4a3e] after:transition-all hover:after:w-full"
-            >
-              Contact
-            </a>
-            <a
-              href="#free-quote"
-              className="bg-[#2d4a3e] text-white px-6 py-2.5 text-sm font-normal hover:bg-[#1a2f26] transition-all hover:shadow-md"
-            >
-              Get Free Quote
-            </a>
+            {menus.map((item) =>
+              item.cta ? (
+                <Link
+                  key={item.label}
+                  href={item.href}
+                  className="bg-[#2d4a3e] text-white px-6 py-2.5 text-sm font-normal hover:bg-[#1a2f26] transition-all hover:shadow-md"
+                >
+                  {item.label}
+                </Link>
+              ) : (
+                <Link
+                  key={item.label}
+                  href={item.href}
+                  className="text-sm font-normal text-[#3d3d3d] hover:text-[#2d4a3e] transition-colors relative after:absolute after:bottom-[-4px] after:left-0 after:h-[2px] after:w-0 after:bg-[#2d4a3e] after:transition-all hover:after:w-full"
+                >
+                  {item.label}
+                </Link>
+              )
+            )}
           </nav>
 
           {/* Mobile Menu Button */}
@@ -65,36 +57,25 @@ export default function Header() {
 
         {/* Mobile Navigation */}
         <nav className="lg:hidden border-t border-gray-100 py-4 space-y-3">
-          <a
-            href="#about"
-            className="block text-sm text-[#3d3d3d] hover:text-[#2d4a3e] transition-colors py-2"
-          >
-            About
-          </a>
-          <a
-            href="#gallery"
-            className="block text-sm text-[#3d3d3d] hover:text-[#2d4a3e] transition-colors py-2"
-          >
-            Gallery
-          </a>
-          <a
-            href="#project-location"
-            className="block text-sm text-[#3d3d3d] hover:text-[#2d4a3e] transition-colors py-2"
-          >
-            Projects
-          </a>
-          <a
-            href="#contact-us"
-            className="block text-sm text-[#3d3d3d] hover:text-[#2d4a3e] transition-colors py-2"
-          >
-            Contact
-          </a>
-          <a
-            href="#free-quote"
-            className="block bg-[#2d4a3e] text-white px-6 py-2.5 text-sm text-center hover:bg-[#1a2f26] transition-colors mt-4"
-          >
-            Get Free Quote
-          </a>
+          {menus.map((item) =>
+            item.cta ? (
+              <Link
+                key={item.label}
+                href={item.href}
+                className="block bg-[#2d4a3e] text-white px-6 py-2.5 text-sm text-center hover:bg-[#1a2f26] transition-colors mt-4"
+              >
+                {item.label}
+              </Link>
+            ) : (
+              <Link
+                key={item.label}
+                href={item.href}
+                className="block text-sm text-[#3d3d3d] hover:text-[#2d4a3e] transition-colors py-2"
+              >
+                {item.label}
+              </Link>
+            )
+          )}
         </nav>
       </div>
     </header>
