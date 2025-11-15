@@ -1,5 +1,6 @@
 import Link from 'next/link';
 import { menus } from '../data/menuData';
+import { COMPNAY_NAME } from '../constants/text';
 
 export default function Header() {
   return (
@@ -16,7 +17,7 @@ export default function Header() {
             />
             <div>
               <h1 className="text-2xl font-bold text-[#2d4a3e] leading-tight">
-                Kaifei Landscape Inc
+                {COMPNAY_NAME}
               </h1>
               <p className="text-xs text-[#7a9085] font-light">
                 Customized design within budget

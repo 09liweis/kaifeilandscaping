@@ -1,3 +1,5 @@
+import { COMPNAY_NAME } from "../constants/text";
+
 export default function Footer() {
   return (
     <footer className="bg-[#2d4a3e] text-white pt-16 pb-8">
@@ -6,7 +8,7 @@ export default function Footer() {
           {/* Company Info */}
           <div>
             <h3 className="text-xl font-bold mb-4 text-white">
-              Kaifei Landscape Inc
+              {COMPNAY_NAME}
             </h3>
             <p className="text-sm text-[#b8c9c1] leading-relaxed mb-4">
               Transform your outdoor space with our customized landscape designs. Professional service, exceptional quality, within your budget.
@@ -119,7 +121,7 @@ export default function Footer() {
         {/* Divider */}
         <div className="border-t border-white/10 pt-8">
           <p className="text-xs text-[#7a9085] text-center">
-            ©2024 Kaifei Landscape Inc. All rights reserved.
+            ©2024 {COMPNAY_NAME}. All rights reserved.
           </p>
         </div>
       </div>
