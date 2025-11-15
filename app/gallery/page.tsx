@@ -115,14 +115,6 @@ export default function GalleryPage() {
                         alt={photo.title}
                         className="w-full h-auto"
                       />
-                      <div className="p-6">
-                        <h3 className="text-2xl font-bold text-[#2d4a3e] mb-2">
-                          {photo.title}
-                        </h3>
-                        {photo.description && (
-                          <p className="text-gray-600">{photo.description}</p>
-                        )}
-                      </div>
                     </div>
                   );
                 }
