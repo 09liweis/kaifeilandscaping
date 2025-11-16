@@ -1,4 +1,6 @@
+import Link from "next/link";
 import { COMPNAY_NAME, PHONE_NUMBER } from "../constants/text";
+import { menus } from "../data/menuData";
 
 export default function Footer() {
   return (
@@ -36,46 +38,16 @@ export default function Footer() {
           <div>
             <h4 className="text-lg font-semibold mb-6 text-white">Quick Links</h4>
             <ul className="space-y-3">
-              <li>
-                <a
-                  href="#about"
-                  className="text-sm text-[#b8c9c1] hover:text-white transition-colors"
-                >
-                  About Us
-                </a>
-              </li>
-              <li>
-                <a
-                  href="#gallery"
-                  className="text-sm text-[#b8c9c1] hover:text-white transition-colors"
-                >
-                  Gallery
-                </a>
-              </li>
-              <li>
-                <a
-                  href="#project-location"
-                  className="text-sm text-[#b8c9c1] hover:text-white transition-colors"
-                >
-                  Projects
-                </a>
-              </li>
-              <li>
-                <a
-                  href="#contact-us"
-                  className="text-sm text-[#b8c9c1] hover:text-white transition-colors"
-                >
-                  Contact
-                </a>
-              </li>
-              <li>
-                <a
-                  href="#free-quote"
-                  className="text-sm text-[#b8c9c1] hover:text-white transition-colors"
-                >
-                  Free Quote
-                </a>
-              </li>
+              {menus.map((menu) => (
+                <li key={menu.href}>
+                  <Link
+                    href={menu.href}
+                    className="text-sm text-[#b8c9c1] hover:text-white transition-colors"
+                  >
+                    {menu.label}
+                  </Link>
+                </li>
+              ))}
             </ul>
           </div>
 
