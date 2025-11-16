@@ -61,7 +61,7 @@ export default function GalleryPage() {
                   alt={photo.title}
                   className="w-full h-64 object-cover group-hover:scale-110 transition-transform duration-300"
                 />
-                <div className="absolute inset-0 bg-gradient-to-t from-black/70 via-transparent to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300 flex flex-col justify-end p-4">
+                {/* <div className="absolute inset-0 bg-gradient-to-t from-black/70 via-transparent to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300 flex flex-col justify-end p-4">
                   <h3 className="text-white font-semibold text-lg">
                     {photo.title}
                   </h3>
@@ -70,7 +70,7 @@ export default function GalleryPage() {
                       {photo.description}
                     </p>
                   )}
-                </div>
+                </div> */}
               </div>
             ))}
           </div>
