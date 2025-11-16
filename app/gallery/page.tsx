@@ -88,7 +88,7 @@ export default function GalleryPage() {
             >
               <button
                 onClick={() => setSelectedPhoto(null)}
-                className="absolute top-4 right-4 bg-white rounded-full p-2 hover:bg-gray-100 transition-colors z-10"
+                className="absolute top-4 right-4 bg-white rounded-full p-2 hover:bg-gray-100 transition-colors z-10 cursor-pointer"
                 aria-label="Close"
               >
                 <svg
