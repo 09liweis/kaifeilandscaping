@@ -1,17 +1,131 @@
 @import "tailwindcss";
 
+@import url('https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;600;700&display=swap');
+
 :root {
-  --background: #ffffff;
-  --foreground: #181818;
+  /* Base Colors - Matching existing landscaping theme */
+  --background: 0 0% 100%;
+  --foreground: 153 10% 12%;
+  
+  /* Brand Colors - Natural Green & Earth Tones */
+  --primary: 153 25% 24%;        /* #2d4a3e - Dark Green */
+  --primary-dark: 153 30% 14%;   /* #1a2f26 - Darker Green */
+  --primary-light: 153 13% 53%;  /* #7a9085 - Muted Green */
+  --primary-muted: 153 17% 75%;  /* #b8c9c1 - Light Green */
+  
+  --accent: 30 33% 41%;          /* #8B6F47 - Brown/Tan */
+  --accent-dark: 25 43% 31%;     /* #784C3B - Darker Brown */
+  
+  --secondary: 153 15% 45%;
+  --muted: 153 10% 95%;
+  --muted-foreground: 153 5% 45%;
+  
+  /* UI Colors */
+  --card: 0 0% 100%;
+  --card-foreground: 153 10% 12%;
+  --border: 153 10% 90%;
+  --input: 153 10% 90%;
+  --ring: 153 25% 24%;
+  
+  /* State Colors */
+  --success: 142 76% 36%;
+  --error: 0 84% 60%;
+  --warning: 38 92% 50%;
+  
+  /* Gradients */
+  --gradient-primary: linear-gradient(135deg, hsl(153 25% 24%), hsl(153 30% 14%));
+  --gradient-subtle: linear-gradient(180deg, hsl(0 0% 100%), hsl(153 10% 98%));
+  --gradient-hero: linear-gradient(135deg, hsl(153 25% 24%) 0%, hsl(153 30% 14%) 100%);
+  
+  /* Shadows */
+  --shadow-sm: 0 1px 2px 0 rgb(0 0 0 / 0.05);
+  --shadow-md: 0 4px 6px -1px rgb(0 0 0 / 0.1);
+  --shadow-lg: 0 10px 15px -3px rgb(0 0 0 / 0.1);
+  --shadow-elegant: 0 10px 30px -10px hsl(153 25% 24% / 0.2);
+  
+  /* Transitions */
+  --transition-base: 0.2s cubic-bezier(0.4, 0, 0.2, 1);
+  --transition-smooth: 0.3s cubic-bezier(0.4, 0, 0.2, 1);
 }
 
 @theme inline {
   --color-background: var(--background);
   --color-foreground: var(--foreground);
+  --color-primary: var(--primary);
+  --color-primary-dark: var(--primary-dark);
+  --color-primary-light: var(--primary-light);
+  --color-primary-muted: var(--primary-muted);
+  --color-accent: var(--accent);
+  --color-accent-dark: var(--accent-dark);
+  --color-secondary: var(--secondary);
+  --color-muted: var(--muted);
+  --color-muted-foreground: var(--muted-foreground);
+  --color-card: var(--card);
+  --color-card-foreground: var(--card-foreground);
+  --color-border: var(--border);
+  --color-input: var(--input);
+  --color-ring: var(--ring);
+  --color-success: var(--success);
+  --color-error: var(--error);
+  --color-warning: var(--warning);
+  
   --font-sans: var(--font-lato);
+  --font-display: 'Space Grotesk', var(--font-lato), sans-serif;
+}
+
+* {
+  box-sizing: border-box;
 }
 
 body {
-  background: var(--background);
-  color: var(--foreground);
+  background: hsl(var(--background));
+  color: hsl(var(--foreground));
+  font-feature-settings: "kern";
+  text-rendering: optimizeLegibility;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+/* Custom Scrollbar */
+::-webkit-scrollbar {
+  width: 10px;
+}
+
+::-webkit-scrollbar-track {
+  background: hsl(var(--muted));
+}
+
+::-webkit-scrollbar-thumb {
+  background: hsl(var(--primary-light));
+  border-radius: 5px;
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background: hsl(var(--primary));
+}
+
+/* Selection */
+::selection {
+  background: hsl(var(--primary) / 0.2);
+  color: hsl(var(--foreground));
+}
+
+/* Focus styles */
+:focus-visible {
+  outline: 2px solid hsl(var(--ring));
+  outline-offset: 2px;
+}
+
+/* Smooth transitions for interactive elements */
+button, a, input, textarea, select {
+  transition: background-color var(--transition-base),
+              color var(--transition-base),
+              border-color var(--transition-base),
+              transform var(--transition-base),
+              box-shadow var(--transition-base);
+}
+
+/* Disable transitions on transforms to prevent breaking */
+* {
+  transition-property: background-color, color, border-color, box-shadow, opacity;
 }
