@@ -5,11 +5,11 @@ export type MenuItem = {
 };
 
 export const menus: MenuItem[] = [
-  { label: 'About', href: 'about' },
-  { label: 'Gallery', href: 'gallery' },
-  { label: 'Projects', href: 'projects' },
-  { label: 'Contact', href: 'contact' },
-  { label: 'Get Free Quote', href: 'free-quote', cta: true },
+  { label: 'About', href: '/#about' },
+  { label: 'Gallery', href: '/gallery' },
+  { label: 'Projects', href: '/projects' },
+  { label: 'Contact', href: '/contact' },
+  { label: 'Get Free Quote', href: '/free-quote', cta: true },
 ];
 
 export default menus;
