@@ -17,33 +17,6 @@ export default function Header() {
     setIsMobileMenuOpen(false);
   };
 
-  const renderNavLink = (item: typeof menus[0], isMobile = false) => {
-    const baseClasses = item.cta
-      ? 'bg-[#2d4a3e] text-white hover:bg-[#1a2f26] transition-all hover:shadow-md'
-      : 'text-[#3d3d3d] hover:text-[#2d4a3e] transition-colors';
-
-    const desktopSpecificClasses = item.cta
-      ? 'px-6 py-2.5 text-sm font-normal'
-      : 'text-sm font-normal relative after:absolute after:bottom-[-4px] after:left-0 after:h-[2px] after:w-0 after:bg-[#2d4a3e] after:transition-all hover:after:w-full';
-
-    const mobileSpecificClasses = item.cta
-      ? 'block px-6 py-2.5 text-sm text-center mt-4'
-      : 'block text-sm py-2';
-
-    const className = `${baseClasses} ${isMobile ? mobileSpecificClasses : desktopSpecificClasses}`;
-
-    return (
-      <Link
-        key={item.label}
-        href={item.href}
-        className={className}
-        onClick={isMobile ? closeMobileMenu : undefined}
-      >
-        {item.label}
-      </Link>
-    );
-  };
-
   return (
     <header className="bg-white shadow-sm sticky top-0 z-50 transition-all">
       <div className="max-w-7xl mx-auto px-6">
@@ -69,9 +42,49 @@ export default function Header() {
             </div>
           </Link>
 
-          {/* Desktop Navigation */}
-          <nav className="hidden lg:flex items-center gap-8" aria-label="Main navigation">
-            {menus.map((item) => renderNavLink(item, false))}
+          {/* Navigation - Desktop (horizontal) & Mobile (vertical when open) */}
+          <nav
+            id="mobile-menu"
+            className={`
+              ${isMobileMenuOpen ? 'flex' : 'hidden'}
+              lg:flex
+              flex-col lg:flex-row
+              items-stretch lg:items-center
+              gap-3 lg:gap-8
+              absolute lg:static
+              top-[76px] lg:top-auto
+              left-0 lg:left-auto
+              right-0 lg:right-auto
+              bg-white lg:bg-transparent
+              border-t lg:border-t-0
+              border-gray-100
+              py-4 lg:py-0
+              px-6 lg:px-0
+              shadow-md lg:shadow-none
+              animate-in fade-in slide-in-from-top-2 lg:animate-none
+              duration-200
+            `}
+            aria-label="Main navigation"
+          >
+            {menus.map((item) => (
+              <Link
+                key={item.label}
+                href={item.href}
+                onClick={closeMobileMenu}
+                className={`
+                  ${
+                    item.cta
+                      ? 'bg-[#2d4a3e] text-white hover:bg-[#1a2f26] hover:shadow-md px-6 py-2.5 text-center lg:text-left mt-4 lg:mt-0'
+                      : 'text-[#3d3d3d] hover:text-[#2d4a3e] py-2 lg:py-0 lg:relative lg:after:absolute lg:after:bottom-[-4px] lg:after:left-0 lg:after:h-[2px] lg:after:w-0 lg:after:bg-[#2d4a3e] lg:after:transition-all lg:hover:after:w-full'
+                  }
+                  text-sm font-normal
+                  transition-all
+                  block lg:inline-block
+                `}
+              >
+                {item.label}
+              </Link>
+            ))}
           </nav>
 
           {/* Mobile Menu Button */}
@@ -93,17 +106,6 @@ export default function Header() {
             )}
           </button>
         </div>
-
-        {/* Mobile Navigation */}
-        {isMobileMenuOpen && (
-          <nav
-            id="mobile-menu"
-            className="lg:hidden border-t border-gray-100 py-4 space-y-3 animate-in fade-in slide-in-from-top-2 duration-200"
-            aria-label="Mobile navigation"
-          >
-            {menus.map((item) => renderNavLink(item, true))}
-          </nav>
-        )}
       </div>
     </header>
   );
