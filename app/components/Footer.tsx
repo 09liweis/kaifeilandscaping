@@ -1,5 +1,5 @@
 import Link from "next/link";
-import { COMPNAY_NAME, PHONE_NUMBER } from "../constants/text";
+import { COMPNAY_ADDRESS, COMPNAY_NAME, PHONE_NUMBER } from "../constants/text";
 import { menus } from "../data/menuData";
 
 export default function Footer() {
@@ -83,7 +83,7 @@ export default function Footer() {
                   <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M15 11a3 3 0 11-6 0 3 3 0 016 0z" />
                 </svg>
                 <span className="text-sm text-[#b8c9c1]">
-                  Markham, Ontario, L3R 7A9
+                  {COMPNAY_ADDRESS}
                 </span>
               </li>
             </ul>
