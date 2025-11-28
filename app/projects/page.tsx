@@ -4,6 +4,7 @@ import { useEffect, useRef, useState } from 'react';
 import mapboxgl from 'mapbox-gl';
 import 'mapbox-gl/dist/mapbox-gl.css';
 import { projects, Project } from '@/app/data/projectsData';
+import Script from 'next/script';
 
 mapboxgl.accessToken = 'pk.eyJ1Ijoic2FtbGl3ZWlzZW4iLCJhIjoiY20wdnhrMXh4MWtnazJqcGxpcDltcWxqNyJ9.QmJN1v3QJN_QE1cxPfk-Uw';
 
@@ -76,7 +77,16 @@ export default function ProjectLocationPage() {
   }, []);
 
   return (
-    <section className="py-16 md:py-24 bg-white">
+    <>
+      <Script 
+        src="https://api.mapbox.com/mapbox-gl-js/v3.1.0/mapbox-gl.js" 
+        strategy="beforeInteractive" 
+      />
+      <link 
+        href="https://api.mapbox.com/mapbox-gl-js/v3.1.0/mapbox-gl.css" 
+        rel="stylesheet" 
+      />
+      <section className="py-16 md:py-24 bg-white">
       <div className="max-w-7xl mx-auto px-6">
         <div className="text-center mb-12">
           <h2 className="text-4xl md:text-5xl font-bold text-[#2d4a3e] mb-4">
@@ -173,5 +183,6 @@ export default function ProjectLocationPage() {
         )}
       </div>
     </section>
+    </>
   );
 }
