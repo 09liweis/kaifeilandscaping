@@ -32,7 +32,7 @@ export default function GalleryPage() {
               className={`px-6 py-2.5 rounded-lg font-medium transition-all ${
                 activeCategory === category.id
                   ? 'bg-[#2d4a3e] text-white shadow-lg'
-                  : 'bg-gray-100 text-gray-700 hover:bg-gray-200'
+                  : 'bg-gray-100 text-gray-700 hover:bg-gray-200 cursor-pointer'
               }`}
             >
               {category.name}
