@@ -1,4 +1,4 @@
-import { COMPNAY_NAME, PHONE_NUMBER } from '../../constants/text';
+import { COMPANY_EMAIL, COMPNAY_NAME, PHONE_NUMBER } from '../../constants/text';
 
 export default function ContactInfo() {
   const contactMethods = [
@@ -9,7 +9,7 @@ export default function ContactInfo() {
         </svg>
       ),
       title: 'Email Us',
-      value: 'kaifeilandscape@gmail.com',
+      value: COMPANY_EMAIL,
       link: 'mailto:kaifeilandscape@gmail.com',
       description: 'Send us an email anytime',
     },
