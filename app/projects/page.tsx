@@ -1,92 +1,93 @@
 'use client';
 
 import { useEffect, useRef, useState } from 'react';
-import mapboxgl from 'mapbox-gl';
-import 'mapbox-gl/dist/mapbox-gl.css';
 import { projects, Project } from '@/app/data/projectsData';
-import Script from 'next/script';
+import 'mapbox-gl/dist/mapbox-gl.css';
 
-mapboxgl.accessToken = 'pk.eyJ1Ijoic2FtbGl3ZWlzZW4iLCJhIjoiY20wdnhrMXh4MWtnazJqcGxpcDltcWxqNyJ9.QmJN1v3QJN_QE1cxPfk-Uw';
+const MAPBOX_TOKEN = 'pk.eyJ1Ijoic2FtbGl3ZWlzZW4iLCJhIjoiY20wdnhrMXh4MWtnazJqcGxpcDltcWxqNyJ9.QmJN1v3QJN_QE1cxPfk-Uw';
 
 export default function ProjectLocationPage() {
   const mapContainer = useRef<HTMLDivElement>(null);
-  const map = useRef<mapboxgl.Map | null>(null);
+  const map = useRef<any | null>(null);
   const [selectedProject, setSelectedProject] = useState<Project | null>(null);
 
   useEffect(() => {
     if (!mapContainer.current || map.current) return;
 
-    map.current = new mapboxgl.Map({
-      container: mapContainer.current,
-      style: 'mapbox://styles/mapbox/streets-v12',
-      center: [-79.3832, 43.6532],
-      zoom: 10,
-    });
+    let mounted = true;
 
-    map.current.addControl(new mapboxgl.NavigationControl(), 'top-right');
+    (async () => {
+      const mapboxglModule = await import('mapbox-gl');
+      const mapboxgl = mapboxglModule.default ?? mapboxglModule;
+      // load CSS dynamically to ensure styles are present on client
 
-    projects.forEach((project) => {
-      const el = document.createElement('div');
-      el.className = 'custom-marker';
-      el.style.backgroundImage = 'url(/logo.png)';
-      el.style.width = '40px';
-      el.style.height = '40px';
-      el.style.backgroundSize = 'cover';
-      el.style.borderRadius = '50%';
-      el.style.cursor = 'pointer';
-      el.style.border = '3px solid #2d4a3e';
-      el.style.boxShadow = '0 2px 8px rgba(0,0,0,0.3)';
+      mapboxgl.accessToken = MAPBOX_TOKEN;
 
-      const marker = new mapboxgl.Marker(el)
-        .setLngLat([project.lng, project.lat])
-        .addTo(map.current!);
+      if (!mounted || !mapContainer.current) return;
 
-      el.addEventListener('click', () => {
-        setSelectedProject(project);
-        map.current?.flyTo({
-          center: [project.lng, project.lat],
-          zoom: 14,
-          duration: 1500,
+      map.current = new mapboxgl.Map({
+        container: mapContainer.current,
+        style: 'mapbox://styles/mapbox/streets-v12',
+        center: [-79.3832, 43.6532],
+        zoom: 10,
+      });
+
+      map.current.addControl(new mapboxgl.NavigationControl(), 'top-right');
+
+      projects.forEach((project) => {
+        const el = document.createElement('div');
+        el.className = 'custom-marker';
+        el.style.backgroundImage = 'url(/logo.png)';
+        el.style.width = '40px';
+        el.style.height = '40px';
+        el.style.backgroundSize = 'cover';
+        el.style.borderRadius = '50%';
+        el.style.cursor = 'pointer';
+        el.style.border = '3px solid #2d4a3e';
+        el.style.boxShadow = '0 2px 8px rgba(0,0,0,0.3)';
+
+        const marker = new mapboxgl.Marker(el)
+          .setLngLat([project.lng, project.lat])
+          .addTo(map.current);
+
+        el.addEventListener('click', () => {
+          setSelectedProject(project);
+          map.current?.flyTo({
+            center: [project.lng, project.lat],
+            zoom: 14,
+            duration: 1500,
+          });
+        });
+
+        const popup = new mapboxgl.Popup({
+          offset: 25,
+          closeButton: false,
+        }).setHTML(`
+          <div style="padding: 8px; min-width: 200px;">
+            <h3 style="margin: 0 0 4px 0; font-weight: 600; color: #2d4a3e;">${project.name}</h3>
+            <p style="margin: 0; font-size: 12px; color: #666;">${project.address}</p>
+          </div>
+        `);
+
+        marker.getElement().addEventListener('mouseenter', () => {
+          popup.addTo(map.current);
+          marker.setPopup(popup);
+        });
+
+        marker.getElement().addEventListener('mouseleave', () => {
+          popup.remove();
         });
       });
-
-      const popup = new mapboxgl.Popup({
-        offset: 25,
-        closeButton: false,
-      }).setHTML(`
-        <div style="padding: 8px; min-width: 200px;">
-          <h3 style="margin: 0 0 4px 0; font-weight: 600; color: #2d4a3e;">${project.name}</h3>
-          <p style="margin: 0; font-size: 12px; color: #666;">${project.address}</p>
-        </div>
-      `);
-
-      marker.getElement().addEventListener('mouseenter', () => {
-        popup.addTo(map.current!);
-        marker.setPopup(popup);
-        popup.addTo(map.current!);
-      });
-
-      marker.getElement().addEventListener('mouseleave', () => {
-        popup.remove();
-      });
-    });
+    })();
 
     return () => {
+      mounted = false;
       map.current?.remove();
     };
   }, []);
 
   return (
-    <>
-      <Script 
-        src="https://api.mapbox.com/mapbox-gl-js/v3.1.0/mapbox-gl.js" 
-        strategy="beforeInteractive" 
-      />
-      <link 
-        href="https://api.mapbox.com/mapbox-gl-js/v3.1.0/mapbox-gl.css" 
-        rel="stylesheet" 
-      />
-      <section className="py-16 md:py-24 bg-white">
+    <section className="py-16 md:py-24 bg-white">
       <div className="max-w-7xl mx-auto px-6">
         <div className="text-center mb-12">
           <h2 className="text-4xl md:text-5xl font-bold text-[#2d4a3e] mb-4">
@@ -183,6 +184,5 @@ export default function ProjectLocationPage() {
         )}
       </div>
     </section>
-    </>
   );
 }
