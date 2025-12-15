@@ -77,7 +77,7 @@ export default function Header() {
                       ? 'bg-[#2d4a3e] text-white hover:bg-[#1a2f26] hover:shadow-md px-6 py-2.5 text-center lg:text-left mt-4 lg:mt-0'
                       : 'text-[#3d3d3d] hover:text-[#2d4a3e] py-2 lg:py-0 lg:relative lg:after:absolute lg:after:bottom-[-4px] lg:after:left-0 lg:after:h-[2px] lg:after:w-0 lg:after:bg-[#2d4a3e] lg:after:transition-all lg:hover:after:w-full'
                   }
-                  text-sm font-normal
+                  text-sm font-semibold
                   transition-all
                   block lg:inline-block
                 `}
