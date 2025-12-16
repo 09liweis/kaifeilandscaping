@@ -139,7 +139,7 @@ export default function Footer() {
         {/* Divider */}
         <div className="border-t border-white/10 pt-8">
           <p className="text-xs text-[#7a9085] text-center">
-            ©2024 {COMPNAY_NAME}. All rights reserved.
+            ©{new Date().getFullYear()} {COMPNAY_NAME}. All rights reserved.
           </p>
         </div>
       </div>
