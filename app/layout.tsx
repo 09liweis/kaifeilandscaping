@@ -3,6 +3,7 @@ import { Lato } from "next/font/google";
 import "./globals.css";
 import Header from "./components/Header";
 import Footer from "./components/Footer";
+import { COMPNAY_NAME } from "./constants/text";
 
 const lato = Lato({
   weight: ["300", "400"],
@@ -11,7 +12,7 @@ const lato = Lato({
 });
 
 export const metadata: Metadata = {
-  title: "Kaifei Landscaping - Transform Your Outdoor Space",
+  title: `${COMPNAY_NAME} - Transform Your Outdoor Space`,
   description: "Professional landscaping services for residential and commercial properties. Over 20 years of experience creating beautiful outdoor spaces.",
 };
 
