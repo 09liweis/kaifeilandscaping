@@ -53,7 +53,7 @@ export default function GalleryPage() {
             {currentCategory.photos.map((photo) => (
               <div
                 key={photo.id}
-                className="group relative overflow-hidden rounded-lg shadow-lg cursor-pointer hover:shadow-xl transition-all"
+                className="group relative overflow-hidden rounded-lg shadow-lg cursor-pointer hover:shadow transition-all"
                 onClick={() => setSelectedPhoto(photo.id)}
               >
                 <img
