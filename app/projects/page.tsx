@@ -4,7 +4,7 @@ import { useEffect, useRef, useState } from 'react';
 import { projects, Project } from '@/app/data/projectsData';
 import 'mapbox-gl/dist/mapbox-gl.css';
 
-const MAPBOX_TOKEN = 'pk.eyJ1Ijoic2FtbGl3ZWlzZW4iLCJhIjoiY20wdnhrMXh4MWtnazJqcGxpcDltcWxqNyJ9.QmJN1v3QJN_QE1cxPfk-Uw';
+const MAPBOX_TOKEN = process.env.NEXT_PUBLIC_MAPBOX_TOKEN || '';
 
 export default function ProjectLocationPage() {
   const mapContainer = useRef<HTMLDivElement>(null);
