@@ -1,4 +1,4 @@
-import { COMPANY_EMAIL, COMPNAY_NAME, PHONE_NUMBER } from '../../constants/text';
+import { COMPANY_EMAIL, PHONE_NUMBER, PHONE_NUMBER_2 } from '../../constants/text';
 
 export default function ContactInfo() {
   const contactMethods = [
@@ -9,8 +9,8 @@ export default function ContactInfo() {
         </svg>
       ),
       title: 'Email Us',
-      value: COMPANY_EMAIL,
-      link: 'mailto:kaifeilandscape@gmail.com',
+      value: [COMPANY_EMAIL],
+      link: ['mailto:kaifeilandscape@gmail.com'],
       description: 'Send us an email anytime',
     },
     {
@@ -20,8 +20,8 @@ export default function ContactInfo() {
         </svg>
       ),
       title: 'Call Us',
-      value: PHONE_NUMBER,
-      link: `tel:${PHONE_NUMBER}`,
+      value: [PHONE_NUMBER, PHONE_NUMBER_2],
+      link: [`tel:${PHONE_NUMBER}`, `tel:${PHONE_NUMBER_2}`],
       description: 'Mon-Fri 8am-6pm EST',
     },
     {
@@ -32,8 +32,8 @@ export default function ContactInfo() {
         </svg>
       ),
       title: 'Visit Us',
-      value: 'Markham, Ontario, L3R 7A9',
-      link: 'https://maps.google.com/?q=Markham,Ontario,L3R7A9',
+      value: ['Markham, Ontario, L3R 7A9'],
+      link: ['https://maps.google.com/?q=Markham,Ontario,L3R7A9'],
       description: 'Our service area',
     },
   ];
@@ -60,19 +60,24 @@ export default function ContactInfo() {
             className="bg-white p-6 rounded-xl border border-border hover:shadow-md group"
           >
             <div className="flex gap-4">
-              <div className="flex-shrink-0 w-12 h-12 bg-primary/10 rounded-lg flex items-center justify-center text-primary group-hover:bg-primary group-hover:text-white">
+              <div className="flex-shrink-0 w-12 h-12 bg-primary/10 rounded-lg flex items-center justify-center text-primary group-hover:bg-primary">
                 {method.icon}
               </div>
               <div className="flex-1">
                 <h3 className="font-semibold text-foreground mb-1">{method.title}</h3>
-                <a
-                  href={method.link}
-                  className="text-primary hover:text-primary-dark font-medium break-all"
-                  target={method.title === 'Visit Us' ? '_blank' : undefined}
-                  rel={method.title === 'Visit Us' ? 'noopener noreferrer' : undefined}
-                >
-                  {method.value}
-                </a>
+                <div className="flex flex-col gap-1">
+                  {method.value.map((value, idx) => (
+                    <a
+                      key={idx}
+                      href={Array.isArray(method.link) ? method.link[idx] : method.link}
+                      className="text-primary hover:text-primary-dark font-medium break-all"
+                      target={method.title === 'Visit Us' ? '_blank' : undefined}
+                      rel={method.title === 'Visit Us' ? 'noopener noreferrer' : undefined}
+                    >
+                      {value}
+                    </a>
+                  ))}
+                </div>
                 <p className="text-sm text-muted-foreground mt-1">{method.description}</p>
               </div>
             </div>
@@ -89,17 +94,13 @@ export default function ContactInfo() {
           Business Hours
         </h3>
         <div className="space-y-2 text-sm">
-          <div className="flex justify-between">
-            <span className="text-muted-foreground">Monday - Friday</span>
-            <span className="font-medium text-foreground">8:00 AM - 6:00 PM</span>
+          <div className="flex justify-between">            
+            <span className="text-muted-foreground">Construction Schedule</span>
+            <span className="font-medium text-foreground">According to weather condition</span>
           </div>
           <div className="flex justify-between">
-            <span className="text-muted-foreground">Saturday</span>
-            <span className="font-medium text-foreground">9:00 AM - 4:00 PM</span>
-          </div>
-          <div className="flex justify-between">
-            <span className="text-muted-foreground">Sunday</span>
-            <span className="font-medium text-foreground">Closed</span>
+            <span className="text-muted-foreground">Customer Service time</span>
+            <span className="font-medium text-foreground">24/7</span>
           </div>
         </div>
       </div>
@@ -114,7 +115,7 @@ export default function ContactInfo() {
               href={social.link}
               target="_blank"
               rel="noopener noreferrer"
-              className="w-12 h-12 bg-primary/10 hover:bg-primary rounded-lg flex items-center justify-center text-primary hover:text-white group"
+              className="w-12 h-12 bg-primary/10 hover:bg-primary rounded-lg flex items-center justify-center text-primary group"
               aria-label={social.name}
             >
               {social.icon}
