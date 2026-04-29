@@ -5,7 +5,7 @@ export type MenuItem = {
 };
 
 export const menus: MenuItem[] = [
-  { label: 'About', href: '/#about' },
+  { label: 'Our Services', href: '/services' },
   { label: 'Gallery', href: '/gallery' },
   { label: 'Projects', href: '/projects' },
   { label: 'Contact', href: '/contact' },
