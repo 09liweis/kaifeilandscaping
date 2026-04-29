@@ -11,7 +11,7 @@ export default function ContactInfo() {
       title: 'Email Us',
       value: [COMPANY_EMAIL],
       link: ['mailto:kaifeilandscape@gmail.com'],
-      description: 'Send us an email anytime',
+      description: 'Reply within 1 day',
     },
     {
       icon: (
@@ -22,7 +22,7 @@ export default function ContactInfo() {
       title: 'Call Us',
       value: [PHONE_NUMBER, PHONE_NUMBER_2],
       link: [`tel:${PHONE_NUMBER}`, `tel:${PHONE_NUMBER_2}`],
-      description: '24/7',
+      description: '',
     },
     {
       icon: (
@@ -31,10 +31,10 @@ export default function ContactInfo() {
           <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M15 11a3 3 0 11-6 0 3 3 0 016 0z" />
         </svg>
       ),
-      title: 'Visit Us',
+      title: 'Our service area',
       value: ['Markham, Ontario, L3R 7A9'],
       link: ['https://maps.google.com/?q=Markham,Ontario,L3R7A9'],
-      description: 'Our service area',
+      description: '',
     },
   ];
   
