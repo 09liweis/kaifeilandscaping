@@ -1,6 +1,6 @@
 export default function ContactHero() {
   return (
-    <section className="relative h-[400px] md:h-[500px] bg-gradient-to-br from-primary to-primary-dark overflow-hidden">
+    <section className="relative h-[400px] md:h-[500px] bg-[#2d4a3e] overflow-hidden">
       {/* Decorative Background Pattern */}
       <div className="absolute inset-0 opacity-10">
         <div className="absolute top-10 left-10 w-64 h-64 bg-white rounded-full blur-3xl"></div>
